@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong><%= Person.human_attribute_name(:email): %></strong>
-  <%= mail_to(@person.email) %>
+  <strong><%= Person.human_attribute_name(:email) %>:</strong>
+  <%= mail_to(@person.email, nil, encode: "javascript") %>
 </p>
 
 <p>
