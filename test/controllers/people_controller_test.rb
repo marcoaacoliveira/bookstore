@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PeopleControllerTest < ActionController::TestCase
   setup do
-    @person = people(:one)
+    @person = people(:admin)
   end
 
   test "should get index" do
@@ -17,6 +17,7 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should create person" do
+  	@person.email = "functional@test.com"
     assert_difference('Person.count') do
       post :create, person: { admin: @person.admin, born_at: @person.born_at, email: @person.email, name: @person.name, password: @person.password }
     end
