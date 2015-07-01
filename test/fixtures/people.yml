@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  password: MyString
-  born_at: 2015-07-01
-  admin: false
+admin:
+  name: Marco
+  email: marcoaacoliveira@gmail.com
+  password: secret
+  born_at: 1991-03-19
+  admin: true
 
-two:
-  name: MyString
-  email: MyString
-  password: MyString
-  born_at: 2015-07-01
+autor:
+  name: Hiolanda
+  email: hiolanda.murielle@gmail.com
+  password: secretagain
+  born_at: 1988-11-06
   admin: false
