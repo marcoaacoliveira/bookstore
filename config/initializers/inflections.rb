@@ -1,16 +1,3 @@
-ActiveSupport::Inflector.inflections do |inflect|
-	inflect.plural /(ao)$/i , 'oes'
-	inflect.singular /oes$/i, 'ao'
-	inflect.plural /(or)$/i, '\1es'
-	inflect.singular /(or)es$/i, '\1'
-	inflect.plural /el$/i, '\1eis'
-
-	inflect.singular /(eis)$/i, 'el'
-	inflect.plural /il$/i, 'is'
-	inflect.singular /vis$/, 'vil'
-	inflect.plural /is$/, 'ises'
-	inflect.singular /ises$/, 'is'
-end
 # Be sure to restart your server when you modify this file.
 
 # Add new inflection rules using the following format. Inflections
