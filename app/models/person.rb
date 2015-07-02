@@ -8,6 +8,7 @@ class Person < ActiveRecord::Base
 	attr_accessor :plain_password
 	before_save :encrypt_password
 	scope :admins, -> { where(["admin=?", true]) }
+	default_scope -> { order(:name) }
 	
 	def self.encrypt_password(pwd)
 		Digest::SHA1.hexdigest("123_#{pwd}_456")
