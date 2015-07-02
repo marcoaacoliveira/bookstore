@@ -34,9 +34,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # i18n
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
-
+#Responders
+gem 'responders'
 #Gem para e-mail
 gem 'actionview-encoded_mail_to'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
