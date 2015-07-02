@@ -71,4 +71,23 @@ class PersonTest < ActiveSupport::TestCase
   	assert_equal old_encrypted, @person.password
   end
   
+  test "deve ter metodo para autenticacao" do
+  	assert_respond_to Person,:auth
+  end
+
+  test "nao deve retornar objeto se email errado" do
+  	assert_nil Person.auth("foo@bar", "teste")
+  end
+
+  test "nao deve retornar objeto se senha errada" do
+  	assert_nil Person.auth(@person.email, "errada")
+  end
+
+  test "deve retornar objeto se email e senha corretos" do
+  	person = Person.auth(@person.email, "teste")
+  	assert_not_nil person
+  	assert_kind_of Person, person
+  	assert_equal @person.name, person.name
+  	assert_equal @person.email, person.email
+  end
 end

@@ -53,4 +53,20 @@ class PeopleControllerTest < ActionController::TestCase
 
     assert_redirected_to people_path
   end
+  
+  test "should not create person with encrypted password" do
+	@person.email = "functional@test.com"
+	assert_difference('Person.count') do
+	post :create, person: { admin: @person.admin, born_at: @person.born_at,\
+	email: @person.email, name: @person.name, password: "teste" }
+	end
+	assert_nil assigns(:person).password
+  end
+  
+  test "should update person encrypted password" do
+	old_password = @person.password
+	patch :update, id: @person, person: { admin: @person.admin, born_at: @person.born_at, email: @person.email, name: @person.name, password: "teste" }
+	assert_equal old_password, assigns(:person).password
+	assert_redirected_to person_path(assigns(:person))
+  end
 end
