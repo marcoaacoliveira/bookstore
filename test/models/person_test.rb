@@ -90,4 +90,9 @@ class PersonTest < ActiveSupport::TestCase
   	assert_equal @person.name, person.name
   	assert_equal @person.email, person.email
   end
+
+  test "deve ter um escopo para retornar administradores" do
+	assert_respond_to Person, :admins
+	assert_equal 1, Person.admins.size
+  end
 end
