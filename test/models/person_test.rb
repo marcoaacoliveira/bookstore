@@ -95,4 +95,9 @@ class PersonTest < ActiveSupport::TestCase
 	assert_respond_to Person, :admins
 	assert_equal 1, Person.admins.size
   end
+
+  test "deve ter um escopo padrao para retornar os usuarios em ordem alfabetica " do
+  	people = Person.all
+  	assert people.first.name < people.last.name, "#{people.last.name} deveria estar antes de #{people.first.name}"
+  end
 end
