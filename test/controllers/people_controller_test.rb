@@ -17,12 +17,18 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should create person" do
-  	@person.email = "functional@test.com"
-    assert_difference('Person.count') do
-      post :create, person: { admin: @person.admin, born_at: @person.born_at, email: @person.email, name: @person.name, password: @person.password }
-    end
+  	new_password = "novasenha"
+  	@person.email= "functional@test.com"
 
-    assert_redirected_to person_path(assigns(:person))
+
+  	assert_difference('Person.count') do
+  		post :create, person: {admin: @person.admin, born_at: @person.born_at, email: @person.email, name: @person.name, plain_password: new_password}
+  	end
+
+  	person = assigns(:person)
+  	assert_not_nil person
+  	assert_equal Person.encrypt_password(new_password), person.password
+  	assert_redirected_to person_path(person)
   end
 
   test "should show person" do

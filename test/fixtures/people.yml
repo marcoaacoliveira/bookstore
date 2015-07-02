@@ -3,13 +3,13 @@
 admin:
   name: Marco
   email: marcoaacoliveira@gmail.com
-  password: secret
+  password: <%= Person.encrypt_password("teste") %>
   born_at: 1991-03-19
   admin: true
 
 autor:
   name: Hiolanda
   email: hiolanda.murielle@gmail.com
-  password: secretagain
+  password: <%= Person.encrypt_password("teste2") %>
   born_at: 1988-11-06
   admin: false
