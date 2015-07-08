@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'login/login'
+
+  get 'login/logout'
+
   resources :people
 
   # The priority is based upon order of creation: first created -> highest priority.
