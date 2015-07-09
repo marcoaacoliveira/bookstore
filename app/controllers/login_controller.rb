@@ -15,6 +15,7 @@ class LoginController < ApplicationController
 
       if password.blank?
         flash[:notice] = "Informe a senha"
+        return
       end
 
       person = Person.auth(email,password)
