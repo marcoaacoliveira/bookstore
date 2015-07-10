@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'login/login'
-  post 'login/login'
+
   get 'login/logout'
   resources :people
 

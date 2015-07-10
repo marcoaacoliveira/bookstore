@@ -54,4 +54,15 @@ class LoginControllerTest < ActionController::TestCase
     assert_nil session[:admin]
     assert_redirected_to action: :login
   end
+
+  test "should have a login url" do
+    assert_generates "/autenticar", {controller: "login", action: "login"}
+    assert_recognizes({controller: "login", action: "login"},"/autenticar")
+    assert_routing({path: "/autenticar"},{controller: "login", action: "login"})
+  end
+  test "should have a logout url" do
+    assert_generates "/sair", {controller: :login, action: :logout}
+    assert_recognizes({controller: "login", action: "logout"},"/sair")
+    assert_routing({path: "/sair"},{controller: "login", action: "logout"})
+  end
 end
