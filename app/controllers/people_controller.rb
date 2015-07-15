@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :changed]
   respond_to :html, :json
 
   # GET /people
@@ -48,6 +48,10 @@ class PeopleController < ApplicationController
   def admins
     @admins = Person.admins
   end
+
+  def changed
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
