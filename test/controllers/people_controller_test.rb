@@ -5,10 +5,15 @@ class PeopleControllerTest < ActionController::TestCase
     @person = people(:admin)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:people)
+  test "should not get index when not logged" do
+	get :index
+	assert_redirected_to "/autenticar"
+  end
+  
+  test "should get index when logged" do
+	get :index, {}, {id: @person.id}
+	assert_response :success
+	assert_not_nil assigns(:people)
   end
 
   test "should get new" do
