@@ -77,9 +77,20 @@ class PeopleControllerTest < ActionController::TestCase
   test "should show info about when a person has changed" do
   	get :changed, id: @person.id
   	assert_response :success
-  	assert_assings(:person)
+  	assert assigns(:person)
   	assert_select "p#name" , text: "Nome: #{@person.name}"
   	assert_select "p#created", text: "Criado em: #{I18n.localize(@person.created_at)}"
   	assert_select "p#updated", text: "Alterado em: #{I18n.localize(@person.updated_at)}"
+  end
+
+  test "should list all the admins" do
+    get :admins
+    assert_response :success
+    assert assigns(:admins)
+    assert_select "table" do
+      assert_select "tbody" do
+        assert_select "tr", 1
+      end
+    end
   end
 end

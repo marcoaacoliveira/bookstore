@@ -69,15 +69,4 @@ class LoginControllerTest < ActionController::TestCase
   test "should have an admins routes" do
     assert_routing({path: 'people/admins'}, {controller: 'people', action: 'admins'})
   end
-
-  test "should list all the admins" do
-    get :admins
-    assert_response :success
-    assert assigns(:admins)
-    assert_select "table" do
-      assert_select "tbody" do
-        assert_select "tr", 1
-      end
-    end
-  end
 end

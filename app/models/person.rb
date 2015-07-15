@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
 	end
 
 	def self.auth(email, password)
-		where(["email=? and password=?"], email, encrypt_password(password)).first
+		where(["email=? and password=?", email, encrypt_password(password)]).first
 	end
 	private
 	def age_limit
