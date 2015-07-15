@@ -15,9 +15,8 @@ class Person < ActiveRecord::Base
 	end
 
 	def self.auth(email, password)
-		where(["email=? and password=?", email, encrypt_password(password)]).first
-  end
-
+		where(["email=? and password=?"], email, encrypt_password(password)).first
+	end
 	private
 	def age_limit
 		errors.add(:born_at, "tem que ser maior que 16 anos") if self.born_at.nil? || Date.today.year-self.born_at.year < 16
