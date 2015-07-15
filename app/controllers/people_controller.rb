@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = nil
+    @people = Person.all
   	respond_with @people
   end
 
