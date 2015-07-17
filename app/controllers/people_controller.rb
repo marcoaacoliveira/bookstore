@@ -1,8 +1,7 @@
-class PeopleController < ApplicationController
+class PeopleController < LoggedController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :changed]
   respond_to :html, :json
-  before_action :logged?, only: [:index]
-
+  
   # GET /people
   # GET /people.json
   def index
