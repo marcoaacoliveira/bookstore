@@ -66,4 +66,10 @@ class LoginControllerTest < ActionController::TestCase
     assert_routing({path: "/sair"},{controller: "login", action: "logout"})
   end
 
+<<<<<<< HEAD
+=======
+  test "should have an admins routes" do
+    assert_routing({path: 'people/admins'}, {controller: 'people', action: 'admins'})
+  end
+>>>>>>> 3dad80a285da48857d6cfef47b7044529367f016
 end
