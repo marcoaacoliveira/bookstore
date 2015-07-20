@@ -26,11 +26,13 @@
   <div class="field">
     <%= f.label :born_at %><br>
 	<%= f.date_select :born_at, start_year: 100.years.ago.year, end_year: 16.years.ago.year %>  
-</div>
-  <div class="field">
-    <%= f.label :admin %><br>
-    <%= f.check_box :admin %>
   </div>
+  <% if session[:admin] %>
+      <div class="field">
+        <%= label_tag :admin %><br />
+        <%= check_box_tag :admin, true, @person.admin %>
+      </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

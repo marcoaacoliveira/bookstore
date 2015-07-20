@@ -55,18 +55,45 @@ class PeopleControllerTest < ActionController::TestCase
   end
   
   test "should not create person with encrypted password" do
-	@person.email = "functional@test.com"
-	assert_difference('Person.count') do
-	post :create, person: { admin: @person.admin, born_at: @person.born_at,\
-	email: @person.email, name: @person.name, password: "teste" }
+    @person.email = "functional@test.com"
+    assert_difference('Person.count') do
+    post :create, person: { admin: @person.admin, born_at: @person.born_at,\
+    email: @person.email, name: @person.name, password: "teste" }
 	end
 	assert_nil assigns(:person).password
   end
   
   test "should update person encrypted password" do
-	old_password = @person.password
-	patch :update, id: @person, person: { admin: @person.admin, born_at: @person.born_at, email: @person.email, name: @person.name, password: "teste" }
-	assert_equal old_password, assigns(:person).password
-	assert_redirected_to person_path(assigns(:person))
+    old_password = @person.password
+    patch :update, id: @person, person: { admin: @person.admin, born_at: @person.born_at, email: @person.email, name: @person.name, password: "teste" }
+    assert_equal old_password, assigns(:person).password
+    assert_redirected_to person_path(assigns(:person))
+  end
+  test "should have an admins routes" do
+    assert_routing({path: 'people/admins'}, {controller: 'people', action: 'admins'})
+  end
+
+  test "should list all the admins" do
+    get :admins
+    assert_response :success
+    assert assigns(:admins)
+    assert_select "table" do
+      assert_select "tbody" do
+        assert_select "tr", 1
+      end
+    end
+  end
+
+  test "should not show admin as a person form element" do
+    get :edit, id: @person
+    assert_select "input[name='person[admin]']", 0
+  end
+
+  test "should not set admin from mass assignment" do
+    @person.email = "functional@test.com"
+    assert_difference('Person.count') do
+      post :create, person: { admin: true, born_at: @person.born_at, email: @person.email, name: @person.name, plain_password: "teste" }
+    end
+    assert !assigns(:person).admin
   end
 end

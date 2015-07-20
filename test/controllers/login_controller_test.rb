@@ -66,23 +66,4 @@ class LoginControllerTest < ActionController::TestCase
     assert_routing({path: "/sair"},{controller: "login", action: "logout"})
   end
 
-  test "should have an admins routes" do
-    assert_routing({path: 'people/admins'}, {controller: 'people', action: 'admins'})
-  end
-
-  test "should list all the admins" do
-    get :admins
-    assert_response :success
-    assert assigns(:admins)
-    assert_select "table" do
-      assert_select "tbody" do
-        assert_select "tr", 1
-      end
-    end
-  end
-
-  test "should not show admin as a person form element" do
-    get :edit, id: @person
-    assert_select "input[name='person[admin]']"
-  end
 end
