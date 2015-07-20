@@ -80,4 +80,9 @@ class LoginControllerTest < ActionController::TestCase
       end
     end
   end
+
+  test "should not show admin as a person form element" do
+    get :edit, id: @person
+    assert_select "input[name='person[admin]']"
+  end
 end
